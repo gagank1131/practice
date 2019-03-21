@@ -24,23 +24,25 @@ public class Application {
         Session session = sessionFactory.openSession();
         
         
+        Author author1 = authorCRUD.createAuthor(session, "arpit", "gupta", 25, 12, "shalimar bagh", "delhi");
+        
+        Author author2 = authorCRUD.createAuthor(session, "prateek", "nagar", 25, 20, "paschim vihar", "delhi");
+    
+        book.setAuthor(author1);
+        book1.setAuthor(author1);
+        book2.setAuthor(author2);
+        author1.getBooks().add(book);
+        author1.getBooks().add(book1);
+        author2.getBooks().add(book2);
         
         session.beginTransaction();
         session.save(book);
         session.save(book1);
         session.save(book2);
-       Author author1= authorCRUD.createAuthor(session, "arpit", "gupta", 25,12,"shalimar bagh","delhi");
-       author1.getBooks().add(book);
-       author1.getBooks().add(book1);
-       session.save(author1);
+        session.save(author1);
+        session.save(author2);
         session.getTransaction().commit();
         
-        session.beginTransaction();
-       Author author2 = authorCRUD.createAuthor(session, "prateek", "nagar", 25,20,"paschim vihar","delhi");
-       author2.getBooks().add(book2);
-       
-       session.save(author2);
-        session.getTransaction().commit();
         
         session.beginTransaction();
         authorCRUD.readAuthor(session, 1);
@@ -49,12 +51,12 @@ public class Application {
         session.beginTransaction();
         authorCRUD.updateAuthor(session, 1, 21);
         session.getTransaction().commit();
-        
+
 //        session.beginTransaction();
 //        authorCRUD.deleteAuthor(session, 1);
 //        session.getTransaction().commit();
         
-    session.close();
+        session.close();
         
     }
 }
