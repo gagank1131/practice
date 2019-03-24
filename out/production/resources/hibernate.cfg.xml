@@ -19,11 +19,12 @@
         <property name="show_sql">true</property>
 
         <!--drop or re-create database schema at startup-->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">create-drop</property>
 
         <!--Annotated entities class-->
         <mapping class="com.ttn.hibernate_Assignment.entities.Author"/>
         <mapping class="com.ttn.hibernate_Assignment.entities.Book" />
+
 
 
     </session-factory>

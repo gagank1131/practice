@@ -33,8 +33,7 @@ public class Author {
     @ElementCollection
     Set<String> subjects = new HashSet<String>();
     
-    @OneToMany
-    @JoinTable(joinColumns =@JoinColumn(name = "User_id"),inverseJoinColumns = @JoinColumn(name = "Book_id"))
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     Collection<Book> books = new HashSet<>();
     
     public Collection<Book> getBooks() {
